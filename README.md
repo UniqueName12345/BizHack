@@ -1,138 +1,110 @@
 # BizHack
 
-> **a fork of BizHawk with no rules, only RAM**
+**A fork of BizHawk that cheats harder than reality.**
 
-Welcome to BizHack: the unholy spawn of tool-assisted speedruns and raw memory corruption.  
-Think BizHawk, but with direct RAM write access mid-run. Why wait for the game to let you win, when you can *rewrite the game itself*?
+BizHack is an experimental fork of [BizHawk](https://github.com/TASEmulators/BizHawk), written in C#, designed exclusively for Windows, and **absolutely not TASVideos-approved**.
 
-This project **will never** be supported by TASVideos. This is for glitchers, hackers, memory editors, and deranged god-TASers only. You know who you are.
+Unlike traditional TAS tools which simulate button inputs, BizHack lets you *become the machine*. Modify RAM, rewrite flags, kill collision, spawn impossible items, break frame rules — all without touching the controller. Why be good at the game when you can rewrite its soul?
 
----
-
-![hacker aesthetic](/media/hacker_vibes.png)  
-*A TAS so powerful, even the emulator fears it.*
+⚠️ This tool is for entertainment, glitch research, chaos engineering, or possibly violating the Geneva Convention of TASing. **Use responsibly.**
 
 ---
 
-## 💀 What is BizHack?
+## 🧠 Features (compared to base BizHawk)
 
-BizHack is a multi-system emulator written in C# and C++ like its parent, BizHawk, but with a key difference:  
-**TAS movies can now execute frame-precise RAM edits.**  
-That means during playback, your TAS can do things like:
-- Patch your health to 999 every frame
-- Replace your character's sprite with the final boss
-- Rewrite RNG seeds into all 7s
-- Make the game crash *on purpose*
-- Inject save data, force flags, bypass sanity checks
-- Enter level 3 by flipping one byte in RAM instead of walking
+- Everything BizHawk does: savestates, frame advance, full input control, Lua scripting, savestate rewinds...
+- **Plus one forbidden feature:**
+  > 🚨 Inject custom RAM writes per frame, per domain, with no restrictions.
 
-There are no restrictions. The TAS **is the code**.
+That’s right. Want to zero out health every 3 frames? Set your X position to 9999? Make enemies fall through the floor? You can.
+
+**You’re not playing the game anymore. You’re puppeteering the RAM.**
 
 ---
 
-## 💾 Features
+## 💻 Supported Platforms
 
-- All the standard BizHawk tools you love: savestates, Lua scripting, TAStudio, input recording.
-- But also:  
-  🔧 **Memory injection scripting** per frame  
-  🔧 Custom `MemoryAction` format inside `.tasproj` files  
-  🔧 TAStudio panel for RAM poking  
-  🔧 Real-time memory edits that play back deterministically
+- **Windows 10/11 only**
+- 64-bit. No Linux. No Mono. No Apple. No compromise.
+
+Why? Because I use Windows, and this isn't meant to be portable. If you're a Linux nerd, feel free to fork *this fork*.
 
 ---
 
-## ⚠️ WARNING
+## 🚀 Getting Started
 
-This fork is for *fun*, not for TASVideos compatibility.
-
-- Don’t expect desync-safe submissions.  
-- Don’t expect praise.  
-- Do expect glitchy chaos, corrupted saves, and games screaming in binary.
-
-You are no longer *playing* the game. You are **rewriting its destiny**.
-
----
-
-## 💻 Installing
-
-Same as BizHawk:
-
-1. Download the latest build from [Releases](https://github.com/yourname/BizHack/releases)
-2. Unzip and run `EmuHawk.exe`
-3. Add `.tasproj` files with RAM instructions, or open TAStudio and start poking bytes mid-run
-4. Laugh maniacally
+1. Download from [Releases](https://github.com/YOURUSERNAME/BizHack/releases)
+2. Extract into a fresh folder. Do **not** mix with regular BizHawk.
+3. Run `EmuHawk.exe`
+4. Load a game
+5. Open the new **Memory Actions** panel in TAStudio
+6. Inject chaos
 
 ---
 
-## 📂 New TAS Format Additions
+## ✍️ RAM Manipulation API
 
-Inside your `.tasproj`, you’ll now see:
+Each memory action is:
 ```json
-"MemoryActions": [
-  { "Frame": 123, "DomainName": "Main RAM", "Address": 65536, "Value": 255 },
-  { "Frame": 124, "DomainName": "WRAM", "Address": 0xDEAD, "Value": 0xBEEF }
-]
+{
+  "Frame": 1337,
+  "DomainName": "System Bus",
+  "Address": 0xDEAD,
+  "Value": 0xBE
+}
 ````
 
-These actions are deterministic and applied every time the frame plays, just like inputs.
+Memory actions can be:
+
+* Replayed automatically during TAS playback
+* Edited live in TAStudio
+* Loaded from external JSON
+* Triggered by Lua (with great danger)
 
 ---
 
-## 🎥 TAS Like a Hacker
+## 🧪 Experimental
 
-1. Load a game
-2. Open TAStudio
-3. Input buttons as normal
-4. Add RAM edits on the same frames
-5. Watch the game *obey*
+This project is:
 
-Use this to:
+* Not tested for determinism
+* Not stable
+* Not supported by TASVideos or any sane person
 
-* Force doors open
-* Skip cutscenes entirely
-* Activate glitches without setup
-* Laugh in hexadecimal
+If a game softlocks, explodes, or summons the ghost of Shigeru Miyamoto — that’s on you.
 
 ---
 
-## 🤝 Contributing
+## 🔥 Why?
 
-If you have ideas like “what if TAS scripts could also write to CPU registers?” or “can we swap ROM banks mid-frame?” — you belong here. Fork, break things, PR later.
+Because scripting input is fun…
+…but scripting **reality** is better.
 
----
-
-## 🧨 License
-
-MIT. Do what you want. But if Nintendo shows up at your house, we’ve never met you.
+BizHack is a tribute to the absurd potential of emulator tooling. It’s not about high score, it’s about high entropy.
 
 ---
 
-## 📛 Not Affiliated With:
+## ⚠️ Legal, Ethical, and Other Disclaimers
 
-* TASVideos.org
-* Legitimate speedrunning
-* Reality as you know it
-
----
-
-## 👾 FAQ
-
-**Q: Is this cheating?**
-**A:** Yes. That’s the point.
-
-**Q: Why isn't this allowed on TASVideos?**
-**A:** Because it turns a TAS into a programmable game mod. Duh.
-
-**Q: Can I use this to break games in new, terrible ways?**
-**A:** Yes. Send screenshots.
+* Do not submit TASes made in BizHack to TASVideos. They will be rejected faster than a frame-perfect lag skip.
+* Do not use this to cheat in netplay. That’s just lame.
+* All standard BizHawk licenses still apply.
+* Don’t distribute copyrighted ROMs.
+* Don’t assume this tool is safe for your data. Or your sanity.
 
 ---
 
-## 💬 Support
+## 🧠 Support?
 
-You're on your own.
-But if you're cool enough, you'll figure it out.
+None. This is a solo passion project. If it breaks, read the source code.
+Forks welcome. Feature requests will be ignored unless they're funny.
 
 ---
 
-> *"Games are just memory maps waiting to be rewritten." – UniqueName12345*
+## 🎤 Final Words
+
+> "Tool-Assisted Speedruns are about precision.
+> BizHack is about **power**."
+
+Happy corrupting.
+— Smurf Someone
